@@ -106,6 +106,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ---------- Video Thumbnail → Fullscreen ----------
+  const videoThumb = document.getElementById('videoThumb');
+  const careVideo = document.getElementById('careVideo');
+
+  if (videoThumb && careVideo) {
+    const playFullscreen = () => {
+      careVideo.muted = false;
+      careVideo.controls = true;
+      const req =
+        careVideo.requestFullscreen ||
+        careVideo.webkitRequestFullscreen ||
+        careVideo.webkitEnterFullscreen ||
+        careVideo.msRequestFullscreen;
+      if (req) {
+        req.call(careVideo).catch(() => {
+          careVideo.play();
+        });
+      }
+      careVideo.play();
+    };
+
+    videoThumb.addEventListener('click', playFullscreen);
+    videoThumb.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        playFullscreen();
+      }
+    });
+
+    // When user exits fullscreen, hide controls again so it returns to a thumbnail
+    const onFsChange = () => {
+      const isFs =
+        document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.msFullscreenElement;
+      if (!isFs) {
+        careVideo.pause();
+        careVideo.controls = false;
+        careVideo.muted = true;
+        careVideo.currentTime = 0;
+      }
+    };
+    document.addEventListener('fullscreenchange', onFsChange);
+    document.addEventListener('webkitfullscreenchange', onFsChange);
+    document.addEventListener('msfullscreenchange', onFsChange);
+  }
+
   // ---------- Active Nav Link on Scroll ----------
   const sections = document.querySelectorAll('.section, .hero');
   const navLinks = document.querySelectorAll('.nav-link');

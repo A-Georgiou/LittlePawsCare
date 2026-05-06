@@ -336,10 +336,16 @@
       <!-- Video -->
       <div class="video-container" data-aos="fade-up" data-aos-delay="200">
         <h3><i class="fa-solid fa-video"></i> See Our Care in Action</h3>
-        <video controls preload="metadata" poster="images/dog-1.jpeg">
-          <source src="video/little-paws-clip.mp4" type="video/mp4" />
-          Your browser does not support the video element.
-        </video>
+        <div class="video-thumb" id="videoThumb" role="button" tabindex="0" aria-label="Play video in fullscreen">
+          <video id="careVideo" preload="metadata" playsinline poster="images/dog-1.jpeg" muted>
+            <source src="video/little-paws-clip.mp4" type="video/mp4" />
+            Your browser does not support the video element.
+          </video>
+          <div class="video-play-overlay">
+            <i class="fa-solid fa-play"></i>
+          </div>
+        </div>
+        <p class="video-caption">Click to play in fullscreen</p>
       </div>
     </div>
     <!-- Wave divider -->
