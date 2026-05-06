@@ -358,6 +358,30 @@ ul { list-style: none; }
   box-shadow: var(--shadow-lg);
 }
 
+.about-cta {
+  margin-top: 1.75rem;
+  font-style: italic;
+  color: #888;
+  font-size: 1rem;
+}
+
+.about-cta a {
+  color: inherit;
+  border-bottom: 1px dashed var(--pink);
+  padding-bottom: 2px;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.about-cta a:hover {
+  color: var(--deep-pink);
+  border-bottom-color: var(--deep-pink);
+}
+
+.about-cta i {
+  font-size: 0.85em;
+  margin-left: 0.25rem;
+}
+
 /* ---------- Licence Badge ---------- */
 .licence-badge {
   display: flex;
